@@ -35,6 +35,13 @@ htmlcov/
 .DS_Store
 
 # Project specific
-data/
+/data/raw/*.lnk
+!/data/raw/*.dvc
+!/data/.gitignore
 logs/
-models/
+models/*.joblib
+
+# DVC
+/.dvc/cache
+/.dvc/tmp
+/.dvc/plots
