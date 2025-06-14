@@ -1,0 +1,36 @@
+site_name: MLOps
+site_description: MLOps practices
+site_url: https://SayWas.github.io/MLOPS/
+repo_url: https://github.com/SayWas/MLOPS
+
+theme:
+  name: material
+  palette:
+    primary: indigo
+    accent: indigo
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.expand
+    - content.code.copy
+
+nav:
+  - Home: index.md
+  - Setup: setup.md
+  - GitHub Flow: workflow.md
+  - Docker: docker.md
+  - CI/CD Pipeline: ci-cd.md
+
+markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed
+  - pymdownx.critic
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+site_dir: site
+
+plugins:
+  - search
