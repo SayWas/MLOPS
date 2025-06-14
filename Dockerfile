@@ -1,4 +1,4 @@
-FROM python:3.12-slim as base
+FROM python:3.12-slim AS base
 
 ENV PYTHONFAULTHANDLER=1 \
     PYTHONHASHSEED=random \
@@ -13,15 +13,15 @@ ENV POETRY_VERSION=2.1.3 \
 RUN pip install --upgrade pip && \
     pip install --no-cache-dir "poetry==$POETRY_VERSION"
 
-COPY pyproject.toml poetry.lock ./
+COPY pyproject.toml poetry.lock README.md ./
 
-FROM base as development
+FROM base AS development
+COPY . .
 RUN poetry install --no-interaction --no-ansi
-COPY . .
 
-FROM base as production
-RUN poetry install --without dev --no-interaction --no-ansi
+FROM base AS production
 COPY . .
+RUN poetry install --without dev --no-interaction --no-ansi
 RUN mkdir -p /app/data && chmod 777 /app/data
 
 CMD ["python", "-m", "mlops"]
