@@ -39,7 +39,7 @@ htmlcov/
 !/data/raw/*.dvc
 !/data/.gitignore
 logs/
-models/
+models/*.joblib
 
 # DVC
 /.dvc/cache
