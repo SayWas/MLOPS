@@ -1,0 +1,4 @@
+logreg_baseline: accuracy: 0.8134, f1: 0.7642, roc_auc: 0.8805
+logreg_extended: accuracy: 0.8284, f1: 0.7850, roc_auc: 0.8862
+rf_baseline: accuracy: 0.8358, f1: 0.8036, roc_auc: 0.8876
+rf_extended: accuracy: 0.8470, f1: 0.8128, roc_auc: 0.8995
