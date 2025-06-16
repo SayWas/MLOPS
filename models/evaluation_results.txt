@@ -1,0 +1,4 @@
+baseline_logreg@6675a3a7fb5b5519f13eaf98d382fa752e6f44fb: accuracy: 0.8134, f1: 0.7642, roc_auc: 0.8805
+baseline_rf@1abcf93f0d2ad0277e2e4f0e0748f1f318afc956: accuracy: 0.8358, f1: 0.8036, roc_auc: 0.8876
+extended_logreg@f72213bdc4f194f42d3e7e19b8f915e6a42e6c46: accuracy: 0.8284, f1: 0.7850, roc_auc: 0.8862
+extended_rf@51b200543cd9debff28b0c21950924c6b37a9395: accuracy: 0.8470, f1: 0.8128, roc_auc: 0.8995

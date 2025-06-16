@@ -169,16 +169,6 @@ jobs:
           virtualenvs-create: true
           virtualenvs-in-project: true
 
-      - name: Install dependencies
-        run: |
-          poetry install --no-interaction --no-root
-          poetry add mkdocs-material
-      - name: Setup documentation
-        run: |
-          mkdir -p docs
-          echo "# MLOps Project" > docs/index.md
-          echo "site_name: MLOps" > mkdocs.yml
-          echo "theme: material" >> mkdocs.yml
       - name: Build documentation
         run: poetry run mkdocs build
 
