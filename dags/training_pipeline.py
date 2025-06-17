@@ -72,7 +72,7 @@ with DAG(
     "titanic_training_pipeline",
     default_args=default_args,
     description=(
-        "Training and evaluation pipeline for Titanic models " "with DVC integration"
+        "Training and evaluation pipeline for Titanic models with DVC integration"
     ),
     schedule=None,  # Run manually or set a schedule
     start_date=datetime(2023, 1, 1),

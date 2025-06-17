@@ -13,6 +13,8 @@ polars = "^1.30.0"
 scikit-learn = "^1.7.0"
 mkdocs-material = "^9.6.14"
 apache-airflow = "^3.0.2"
+clearml = "^2.0.0"
+matplotlib = "^3.10.3"
 
 [tool.poetry.group.dev.dependencies]
 black = "^25.1.0"
