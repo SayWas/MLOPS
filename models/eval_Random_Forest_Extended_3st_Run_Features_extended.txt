@@ -1,0 +1,4 @@
+Random Forest Extended 3st Run Features (extended) evaluation
+accuracy: 0.8358
+f1: 0.7944
+roc_auc: 0.8928

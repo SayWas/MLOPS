@@ -384,11 +384,62 @@ To install and run Apache Airflow in this project:
 
 ---
 
+## Experiment Tracking with ClearML
+
+This project uses ClearML for experiment tracking, model management, and MLOps automation. ClearML helps track, compare, and visualize machine learning experiments.
+
+### Setting up ClearML
+
+1. Install ClearML:
+   ```bash
+   pip install clearml
+   # or with Poetry
+   poetry add clearml
+   ```
+
+2. Configure ClearML credentials:
+   ```bash
+   clearml-init
+   ```
+
+   Alternatively, you can use the existing configuration file (`clearml.conf`) located in your home directory.
+
+### Using ClearML for Experiment Tracking
+
+1. Import ClearML in your training scripts:
+   ```python
+   from clearml import Task
+
+   # Initialize a new task (experiment)
+   task = Task.init(project_name="MLOps-Titanic", task_name="Random Forest Training")
+   ```
+
+2. Log parameters, metrics, and artifacts:
+   ```python
+   # Log hyperparameters
+   task.connect({'features': 'extended', 'n_estimators': 100, 'random_state': 42})
+
+   # Log metrics
+   task.logger.report_scalar(title='Metrics', series='Accuracy', value=0.85, iteration=0)
+   task.logger.report_scalar(title='Metrics', series='F1-Score', value=0.82, iteration=0)
+
+   # Log artifacts
+   task.upload_artifact('model', artifact_object='models/model_extended.joblib')
+   ```
+
+3. Compare experiments in the ClearML Web UI:
+   - Access your ClearML Web UI at https://app.clear.ml/
+   - Navigate to your project to view all experiments
+   - Compare metrics, parameters, and artifacts between experiments
+
+---
+
 ## Tips
 
 * All DAG logic lives in `dags/`
 * All data & model artifacts live in `data/` and `models/`
 * DVC integration means reproducible files for all!
+* ClearML provides experiment tracking and model comparison for your Titanic classification models
 * If you update dependencies, update both `pyproject.toml` and `requirements-airflow.txt` for sync
 
  ---

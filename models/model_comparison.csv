@@ -1,0 +1,5 @@
+model,roc_auc
+Evaluate Random Forest Extended 1st Run Features (extended),0.8994950364377116
+Evaluate Random Forest Extended 2st Run Features (extended),0.887157858495438
+Evaluate Random Forest Extended 3st Run Features (extended),0.8927813163481954
+Evaluate Random Forest Extended 4st Run Features (extended),0.9028518964824697

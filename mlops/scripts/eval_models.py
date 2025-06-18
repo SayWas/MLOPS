@@ -11,6 +11,8 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, f1_score, roc_auc_score
 from sklearn.model_selection import train_test_split
 
+from mlops.tracking import init_task, log_artifact, log_metrics, log_parameters
+
 REPORT_PATH = "models/evaluation_results.txt"
 EXCLUDE_COLS = {"Survived", "PassengerId", "Name", "Ticket", "Cabin", "Embarked"}
 
@@ -63,7 +65,21 @@ def evaluate_model(
 
 def main() -> None:
     """Evaluate all models in models/ and save a report."""
+    task = init_task(
+        task_name="Titanic Models Evaluation",
+        task_type="testing",
+    )
+
     results = {}
+    total_models = sum(len(group["models"]) for group in EVAL_TARGETS.values())
+
+    eval_stats = {
+        "total_models_evaluated": total_models,
+        "feature_groups": list(EVAL_TARGETS.keys()),
+        "test_size": 0.3,
+        "random_state": 42,
+    }
+    log_parameters(task, {"evaluation_stats": eval_stats})
 
     for feat_group, group in EVAL_TARGETS.items():
         with dvc.api.open(
@@ -79,6 +95,13 @@ def main() -> None:
         y = df["Survived"].to_numpy()
         _, x_val, _, y_val = train_test_split(x, y, test_size=0.3, random_state=42)
 
+        data_stats = {
+            f"{feat_group}_samples": len(df),
+            f"{feat_group}_features": len(feature_cols),
+            f"{feat_group}_val_samples": len(x_val),
+        }
+        log_parameters(task, {"data_stats": data_stats})
+
         for model_name, model_info in group["models"].items():
             key = f"{feat_group}_{model_name}@{model_info['rev']}"
             print(f"Evaluating {key} ...")
@@ -90,13 +113,23 @@ def main() -> None:
             print(f"  {metrics}")
             results[key] = metrics
 
+            # Log metrics to ClearML
+            for metric_name, value in metrics.items():
+                log_metrics(task, f"{feat_group}_{model_name}", metric_name, value)
+
     print("\n== Evaluation Results ==")
     with open(REPORT_PATH, "w") as f:
+        f.write("Titanic Models Evaluation Results\n")
+        f.write("=================================\n\n")
         for name, metrics in results.items():
             line = f"{name}: " + ", ".join(f"{k}: {v:.4f}" for k, v in metrics.items())
             print(line)
             f.write(line + "\n")
+        f.write("\n")
     print(f"\nSaved report to {REPORT_PATH}")
+
+    log_artifact(task, "evaluation_results", REPORT_PATH)
+    task.close()
 
 
 if __name__ == "__main__":
