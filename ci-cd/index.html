@@ -10,26 +10,26 @@
       
       
       
-        <link rel="canonical" href="https://SayWas.github.io/MLOPS/">
+        <link rel="canonical" href="https://SayWas.github.io/MLOPS/ci-cd/">
+      
+      
+        <link rel="prev" href="../docker/">
       
       
       
-        <link rel="next" href="setup/">
-      
-      
-      <link rel="icon" href="assets/images/favicon.png">
+      <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
     
     
       
-        <title>MLOps</title>
+        <title>CI/CD Pipeline - MLOps</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.342714a4.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -48,7 +48,7 @@
       
     
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#mlops-project" class="md-skip">
+        <a href="#cicd-pipeline" class="md-skip">
           Skip to content
         </a>
       
@@ -88,7 +88,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="MLOps" class="md-header__button md-logo" aria-label="MLOps" data-md-component="logo">
+    <a href=".." title="MLOps" class="md-header__button md-logo" aria-label="MLOps" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -108,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              CI/CD Pipeline
             
           </span>
         </div>
@@ -198,7 +198,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="MLOps" class="md-nav__button md-logo" aria-label="MLOps" data-md-component="logo">
+    <a href=".." title="MLOps" class="md-nav__button md-logo" aria-label="MLOps" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -225,32 +225,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Home
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="." class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
         
   
   
@@ -261,35 +239,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#table-of-contents" class="md-nav__link">
-    <span class="md-ellipsis">
-      Table of Contents
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -301,7 +250,7 @@
   
   
     <li class="md-nav__item">
-      <a href="setup/" class="md-nav__link">
+      <a href="../setup/" class="md-nav__link">
         
   
   
@@ -323,7 +272,7 @@
   
   
     <li class="md-nav__item">
-      <a href="workflow/" class="md-nav__link">
+      <a href="../workflow/" class="md-nav__link">
         
   
   
@@ -345,7 +294,7 @@
   
   
     <li class="md-nav__item">
-      <a href="docker/" class="md-nav__link">
+      <a href="../docker/" class="md-nav__link">
         
   
   
@@ -364,10 +313,19 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="ci-cd/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -378,6 +336,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -402,23 +361,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#table-of-contents" class="md-nav__link">
-    <span class="md-ellipsis">
-      Table of Contents
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -436,17 +378,22 @@
   
 
 
-<h1 id="mlops-project">MLOps Project</h1>
-<hr />
-<p>Welcome to the MLOps Project documentation! Here you’ll find guidelines for getting started, workflow, Docker usage, CI/CD, and DVC practices.</p>
-<hr />
-<h2 id="table-of-contents">Table of Contents</h2>
+<h1 id="cicd-pipeline">CI/CD Pipeline</h1>
+<p>A full CI/CD pipeline is configured using <strong>GitHub Actions</strong>:</p>
 <ul>
-<li><a href="setup/">Setup</a></li>
-<li><a href="workflow/">GitHub Flow</a></li>
-<li><a href="docker/">Docker</a></li>
-<li><a href="ci-cd/">CI/CD Pipeline</a></li>
+<li><strong>Linting and static checks:</strong> Black, Ruff, and MyPy are run on every PR, push, and release tag.</li>
+<li><strong>Testing:</strong> All unit tests are run with pytest and coverage is collected.</li>
+<li><strong>Python package build:</strong> The package is built using Poetry.</li>
+<li><strong>Docker image build and publish:</strong> The Docker image is pushed to <a href="https://ghcr.io">GitHub Container Registry (ghcr.io)</a>.</li>
+<li><strong>Documentation publishing:</strong> Documentation is automatically deployed to GitHub Pages.</li>
 </ul>
+<p><strong>The pipeline is triggered on:</strong></p>
+<ul>
+<li>Pull Requests to <code>main</code></li>
+<li>Pushes to <code>main</code></li>
+<li>Tag pushes like <code>v*</code> (releases)</li>
+</ul>
+<p>You can find the full pipeline config in <a href="../.github/workflows/ci.yml">.github/workflows/ci.yml</a>.</p>
 
 
 
@@ -495,10 +442,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": ".", "features": ["navigation.instant", "navigation.tracking", "navigation.expand", "content.code.copy"], "search": "assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.expand", "content.code.copy"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.13a4f30d.min.js"></script>
+      <script src="../assets/javascripts/bundle.13a4f30d.min.js"></script>
       
     
   </body>

@@ -10,26 +10,28 @@
       
       
       
-        <link rel="canonical" href="https://SayWas.github.io/MLOPS/">
+        <link rel="canonical" href="https://SayWas.github.io/MLOPS/docker/">
       
       
+        <link rel="prev" href="../workflow/">
       
-        <link rel="next" href="setup/">
+      
+        <link rel="next" href="../ci-cd/">
       
       
-      <link rel="icon" href="assets/images/favicon.png">
+      <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
     
     
       
-        <title>MLOps</title>
+        <title>Docker - MLOps</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.342714a4.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -48,7 +50,7 @@
       
     
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -72,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#mlops-project" class="md-skip">
+        <a href="#docker" class="md-skip">
           Skip to content
         </a>
       
@@ -88,7 +90,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="MLOps" class="md-header__button md-logo" aria-label="MLOps" data-md-component="logo">
+    <a href=".." title="MLOps" class="md-header__button md-logo" aria-label="MLOps" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -108,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              Docker
             
           </span>
         </div>
@@ -198,7 +200,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="MLOps" class="md-nav__button md-logo" aria-label="MLOps" data-md-component="logo">
+    <a href=".." title="MLOps" class="md-nav__button md-logo" aria-label="MLOps" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -225,6 +227,72 @@
       
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    GitHub Flow
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
     
   
   
@@ -242,7 +310,7 @@
   
   
   <span class="md-ellipsis">
-    Home
+    Docker
     
   </span>
   
@@ -250,12 +318,12 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <a href="." class="md-nav__link md-nav__link--active">
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
   <span class="md-ellipsis">
-    Home
+    Docker
     
   </span>
   
@@ -278,11 +346,35 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#table-of-contents" class="md-nav__link">
+  <a href="#running-with-docker" class="md-nav__link">
     <span class="md-ellipsis">
-      Table of Contents
+      Running with Docker
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Running with Docker">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-docker-compose-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using Docker Compose (recommended):
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-plain-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using plain Docker:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -301,73 +393,7 @@
   
   
     <li class="md-nav__item">
-      <a href="setup/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Setup
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="workflow/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    GitHub Flow
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="docker/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Docker
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="ci-cd/" class="md-nav__link">
+      <a href="../ci-cd/" class="md-nav__link">
         
   
   
@@ -409,11 +435,35 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#table-of-contents" class="md-nav__link">
+  <a href="#running-with-docker" class="md-nav__link">
     <span class="md-ellipsis">
-      Table of Contents
+      Running with Docker
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Running with Docker">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-docker-compose-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using Docker Compose (recommended):
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-plain-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using plain Docker:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -436,17 +486,28 @@
   
 
 
-<h1 id="mlops-project">MLOps Project</h1>
-<hr />
-<p>Welcome to the MLOps Project documentation! Here you’ll find guidelines for getting started, workflow, Docker usage, CI/CD, and DVC practices.</p>
-<hr />
-<h2 id="table-of-contents">Table of Contents</h2>
-<ul>
-<li><a href="setup/">Setup</a></li>
-<li><a href="workflow/">GitHub Flow</a></li>
-<li><a href="docker/">Docker</a></li>
-<li><a href="ci-cd/">CI/CD Pipeline</a></li>
-</ul>
+<h1 id="docker">Docker</h1>
+<h2 id="running-with-docker">Running with Docker</h2>
+<p>You can also use Docker to run the project.</p>
+<h3 id="using-docker-compose-recommended">Using Docker Compose (recommended):</h3>
+<p><strong>For development (interactive mode):</strong></p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>build<span class="w"> </span>dev
+docker<span class="w"> </span>compose<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>dev
+</code></pre></div>
+<p><strong>For production:</strong></p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>build<span class="w"> </span>app
+docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>app
+</code></pre></div>
+<h3 id="using-plain-docker">Using plain Docker:</h3>
+<p><strong>Development:</strong></p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>build<span class="w"> </span>--target<span class="w"> </span>development<span class="w"> </span>-t<span class="w"> </span>mlops-dev<span class="w"> </span>.
+docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>mlops-dev
+</code></pre></div>
+<p><strong>Production:</strong></p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>build<span class="w"> </span>--target<span class="w"> </span>production<span class="w"> </span>-t<span class="w"> </span>mlops<span class="w"> </span>.
+docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>mlops
+</code></pre></div>
+<p>All environment variables and volumes are described in <a href="../docker-compose.yaml">docker-compose.yaml</a>.</p>
 
 
 
@@ -495,10 +556,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": ".", "features": ["navigation.instant", "navigation.tracking", "navigation.expand", "content.code.copy"], "search": "assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.expand", "content.code.copy"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.13a4f30d.min.js"></script>
+      <script src="../assets/javascripts/bundle.13a4f30d.min.js"></script>
       
     
   </body>
