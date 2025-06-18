@@ -1,5 +1,5 @@
 # Git
-.git
+# .git - removed to allow model loading from Git revisions
 .gitignore
 
 # Python

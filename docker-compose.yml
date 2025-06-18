@@ -1,0 +1,180 @@
+services:
+  # Random Forest Extended Model Service
+  titanic-rf-extended:
+    build:
+      context: .
+      dockerfile: service/Dockerfile
+    container_name: mlops-titanic-rf-extended
+    ports:
+      - "8001:8000"
+    environment:
+      - MODEL_TYPE=random_forest
+      - DEFAULT_MODEL=model_extended.joblib
+      - DEFAULT_ALGORITHM=random_forest
+      - DEFAULT_FEATURES=extended
+      - API_TITLE=MLOps Titanic API (Random Forest Extended)
+      - API_VERSION=1.0-rf-extended
+    volumes:
+      - ./data:/app/data:ro
+      - ./models:/app/models:ro
+      - ./.git:/app/.git:ro
+      - ./.dvc:/app/.dvc:ro
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+    networks:
+      - titanic-network
+
+  # Logistic Regression Baseline Model Service
+  titanic-logreg-baseline:
+    build:
+      context: .
+      dockerfile: service/Dockerfile
+    container_name: mlops-titanic-logreg-baseline
+    ports:
+      - "8002:8000"
+    environment:
+      - MODEL_TYPE=baseline
+      - DEFAULT_MODEL=model_baseline.joblib
+      - DEFAULT_ALGORITHM=logistic_regression
+      - DEFAULT_FEATURES=baseline
+      - API_TITLE=MLOps Titanic API (LogReg Baseline)
+      - API_VERSION=1.0-logreg-baseline
+    volumes:
+      - ./data:/app/data:ro
+      - ./models:/app/models:ro
+      - ./.git:/app/.git:ro
+      - ./.dvc:/app/.dvc:ro
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+    networks:
+      - titanic-network
+
+  # Random Forest Baseline Model Service
+  titanic-rf-baseline:
+    build:
+      context: .
+      dockerfile: service/Dockerfile
+    container_name: mlops-titanic-rf-baseline
+    ports:
+      - "8003:8000"
+    environment:
+      - MODEL_TYPE=baseline
+      - DEFAULT_MODEL=model_baseline.joblib
+      - DEFAULT_ALGORITHM=random_forest
+      - DEFAULT_FEATURES=baseline
+      - API_TITLE=MLOps Titanic API (RF Baseline)
+      - API_VERSION=1.0-rf-baseline
+    volumes:
+      - ./data:/app/data:ro
+      - ./models:/app/models:ro
+      - ./.git:/app/.git:ro
+      - ./.dvc:/app/.dvc:ro
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+    networks:
+      - titanic-network
+
+  # Logistic Regression Extended Model Service
+  titanic-logreg-extended:
+    build:
+      context: .
+      dockerfile: service/Dockerfile
+    container_name: mlops-titanic-logreg-extended
+    ports:
+      - "8004:8000"
+    environment:
+      - MODEL_TYPE=random_forest
+      - DEFAULT_MODEL=model_extended.joblib
+      - DEFAULT_ALGORITHM=logistic_regression
+      - DEFAULT_FEATURES=extended
+      - API_TITLE=MLOps Titanic API (LogReg Extended)
+      - API_VERSION=1.0-logreg-extended
+    volumes:
+      - ./data:/app/data:ro
+      - ./models:/app/models:ro
+      - ./.git:/app/.git:ro
+      - ./.dvc:/app/.dvc:ro
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+    networks:
+      - titanic-network
+
+  # Prometheus for metrics collection
+  prometheus:
+    image: prom/prometheus:v2.55.1
+    container_name: mlops-titanic-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
+    restart: unless-stopped
+    networks:
+      - titanic-network
+
+  # Grafana for visualization
+  grafana:
+    image: grafana/grafana:11.3.2
+    container_name: mlops-titanic-grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin123
+      - GF_USERS_ALLOW_SIGN_UP=false
+    restart: unless-stopped
+    networks:
+      - titanic-network
+
+  # Node Exporter for system metrics
+  node-exporter:
+    image: prom/node-exporter:v1.8.2
+    container_name: mlops-titanic-node-exporter
+    ports:
+      - "9100:9100"
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.rootfs=/rootfs'
+      - '--path.sysfs=/host/sys'
+      - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
+    restart: unless-stopped
+    networks:
+      - titanic-network
+
+volumes:
+  prometheus_data:
+  grafana_data:
+
+networks:
+  titanic-network:
+    driver: bridge
