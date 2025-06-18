@@ -249,3 +249,146 @@ This project uses [Data Version Control (DVC)](https://dvc.org/) to manage and v
 This enables **team collaboration** and **experiment reproducibility**.
 
 ---
+
+# Apache Airflow Integration
+
+## Installation and Setup
+
+To install and run Apache Airflow in this project:
+
+1. **Add Airflow to your project dependencies** (already in `pyproject.toml`):
+
+   ```bash
+   poetry add apache-airflow
+   ```
+
+2. **Update the lock file:**
+
+   ```bash
+   poetry lock
+   ```
+
+3. **Start Airflow via Docker Compose:**
+
+   ```bash
+   docker compose -f docker-compose-airflow.yaml up -d
+   docker-compose -f docker-compose-airflow.yaml run --rm airflow airflow dags reserialize
+   ```
+
+4. **Migrate Airflow DB**
+
+   ```bash
+   docker exec -it mlops-airflow-1 airflow db migrate
+   ```
+
+5. **Access Airflow UI:** [http://localhost:8080](http://localhost:8080)
+
+6. **To stop Airflow:**
+
+   ```bash
+   docker compose -f docker-compose-airflow.yaml down
+   ```
+
+---
+
+## Project Structure for Airflow
+
+```
+├── docker-compose-airflow.yaml         # Docker Compose config for Airflow
+├── airflow.Dockerfile                 # Dockerfile for Airflow
+├── requirements-airflow.txt           # Airflow container dependencies
+├── dags/                              # Directory for Airflow DAG files
+├── logs/                              # Airflow logs
+├── plugins/                           # Airflow plugins
+└── data/                              # Shared data between Airflow and main project
+```
+
+---
+
+## Working with DAGs
+
+* **Add new DAGs:**  Add Python files to the `dags/` directory.
+
+* **List DAGs:**
+
+  ```bash
+  docker exec -it mlops-airflow-1 airflow dags list
+  ```
+
+* **Trigger DAG:**
+
+  ```bash
+  docker exec -it mlops-airflow-1 airflow dags trigger my_pipeline_dag
+  ```
+
+* **Unpause DAG:**
+
+  ```bash
+  docker exec -it mlops-airflow-1 airflow dags unpause my_pipeline_dag
+  ```
+
+---
+
+## Integration with MLOps Project
+
+* Airflow container has access to the full project code
+* All required dependencies are installed in the Airflow container
+* DAGs import and use project scripts and modules
+* Data directory is shared for direct pipeline integration
+
+---
+
+## Architecture Overview
+
+* PostgreSQL for Airflow metadata
+* Airflow webserver (UI)
+* Airflow scheduler (DAG execution)
+* Shared volumes for DAGs, logs, and data
+* Dedicated Docker network
+
+---
+
+## MLOps Pipelines with Airflow & DVC
+
+1. **DVC Integration**
+
+   * DVC tracks datasets and models
+   * Pipelines automatically version artifacts (data, models, results)
+
+2. **Training and Evaluation Pipeline**
+
+   * `recsys_training_pipeline`: DAG for full ML lifecycle
+     (data prep → model training → evaluation → DVC versioning)
+   * All files tracked and pushed with DVC
+
+3. **Initial DVC Setup**
+
+   * `dvc_init` DAG: initializes DVC and configures remote storage
+   * Run this DAG first (once per environment)
+
+4. **Pipeline Execution**
+
+   ```bash
+   # Run once to initialize DVC
+   docker exec -it mlops-airflow-1 airflow dags trigger dvc_init
+
+   # Main ML pipeline
+   docker exec -it mlops-airflow-1 airflow dags trigger recsys_training_pipeline
+   ```
+
+5. **View Results**
+
+   * Check status in Airflow UI ([localhost:8080](http://localhost:8080))
+   * Evaluation results: e.g., `models/rf_evaluation_results.txt`
+   * Data and models are versioned by DVC and can be rolled back
+
+---
+
+## Tips
+
+* All DAG logic lives in `dags/`
+* All data & model artifacts live in `data/` and `models/`
+* DVC integration means reproducible files for all!
+* If you update dependencies, update both `pyproject.toml` and `requirements-airflow.txt` for sync
+
+ ---

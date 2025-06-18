@@ -3,3 +3,4 @@ outs:
   size: 69271
   hash: md5
   path: train_features_extended.csv
+  isexec: true
